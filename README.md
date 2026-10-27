@@ -34,7 +34,7 @@ This repository contains the interactive user interface and Express reverse-prox
 
 ## 🚀 Port & Networking Architecture
 
-To prevent standard port conflicts (such as default 3000, 8080, 5000), this service is configured to run on non-standard port **`7180`**:
+This service is configured to run on port **`7180`**:
 
 | Setting | Value | Description |
 | :--- | :--- | :--- |
