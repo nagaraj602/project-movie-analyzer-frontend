@@ -1,0 +1,40 @@
+frontend:
+  env:
+    BACKEND_API_URL: http://backend:7280
+  image:
+    pullPolicy: Always
+    repository: __FRONTEND_IMAGE_REPOSITORY__
+    tag: __FRONTEND_IMAGE_TAG__
+  name: frontend
+  probes:
+    liveness:
+      initialDelaySeconds: 10
+      path: /health
+      periodSeconds: 10
+      port: 7180
+    readiness:
+      initialDelaySeconds: 5
+      path: /health
+      periodSeconds: 5
+      port: 7180
+  replicaCount: 1
+  resources:
+    limits:
+      cpu: 500m
+      memory: 512Mi
+    requests:
+      cpu: 250m
+      memory: 256Mi
+  service:
+    port: 7180
+    targetPort: 7180
+    type: NodePort
+ingress:
+  alb:
+    certificateArn: arn:aws:acm:ap-south-1:070797855002:certificate/1b1ab1c4-6df7-402d-8a81-a2d700fd50ee
+    groupName: shared-alb
+    groupOrder: '10'
+    scheme: internet-facing
+    targetType: ip
+  enabled: true
+  host: movie.sskdevops.in
